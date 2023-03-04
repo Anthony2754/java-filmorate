@@ -1,4 +1,4 @@
-package ru.yandex.practicum.filmorate.controllers;
+package ru.yandex.practicum.filmorate.controller;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,8 +16,8 @@ class FilmControllerTest {
     public void createFilmWithoutIdTest() {
 
         Film film = Film.builder()
-                .name("name_1")
-                .description("description_1")
+                .name("name1")
+                .description("description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
                 .build();
@@ -30,8 +30,8 @@ class FilmControllerTest {
 
         Film film = Film.builder()
                 .id(-1)
-                .name("name_1")
-                .description("description_1")
+                .name("name1")
+                .description("description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
                 .build();
@@ -46,15 +46,15 @@ class FilmControllerTest {
 
         Film film1 = Film.builder()
                 .id(1)
-                .name("name_1")
-                .description("description_1")
+                .name("name1")
+                .description("description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
                 .build();
         Film film2 = Film.builder()
                 .id(1)
-                .name("name_2")
-                .description("description_2")
+                .name("name2")
+                .description("description2")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
                 .build();
@@ -70,7 +70,7 @@ class FilmControllerTest {
 
         Film film = Film.builder()
                 .id(1)
-                .name("name_1")
+                .name("name1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
                 .build();
@@ -84,8 +84,8 @@ class FilmControllerTest {
 
         Film film = Film.builder()
                 .id(1)
-                .name("name_1")
-                .description("description_1")
+                .name("name1")
+                .description("description1")
                 .releaseDate(LocalDate.of(1020, 11, 12))
                 .duration(111)
                 .build();
@@ -101,8 +101,8 @@ class FilmControllerTest {
 
         Film film = Film.builder()
                 .id(1)
-                .name("name_1")
-                .description("description_1")
+                .name("name1")
+                .description("description1")
                 .duration(111)
                 .build();
         filmController.postFilm(film);
@@ -114,8 +114,8 @@ class FilmControllerTest {
     public void updateFilmWithoutIdTest() {
 
         Film film = Film.builder()
-                .name("name_1")
-                .description("description_1")
+                .name("name1")
+                .description("description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
                 .build();
@@ -128,15 +128,15 @@ class FilmControllerTest {
 
         Film film1 = Film.builder()
                 .id(1)
-                .name("name_1")
-                .description("description_1")
+                .name("name1")
+                .description("description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
                 .build();
         Film film2 = Film.builder()
                 .id(1)
-                .name("name_2")
-                .description("description_2")
+                .name("name2")
+                .description("description2")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
                 .build();
@@ -153,7 +153,7 @@ class FilmControllerTest {
 
         Film film = Film.builder()
                 .id(1)
-                .name("name_1")
+                .name("name1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
                 .build();
@@ -167,8 +167,8 @@ class FilmControllerTest {
 
         Film film = Film.builder()
                 .id(1)
-                .name("name_1")
-                .description("description_1")
+                .name("name1")
+                .description("description1")
                 .releaseDate(LocalDate.of(1020, 11, 12))
                 .duration(111)
                 .build();
@@ -184,8 +184,8 @@ class FilmControllerTest {
 
         Film film = Film.builder()
                 .id(1)
-                .name("name_1")
-                .description("description_1")
+                .name("name1")
+                .description("description1")
                 .duration(111)
                 .build();
         filmController.putFilm(film);

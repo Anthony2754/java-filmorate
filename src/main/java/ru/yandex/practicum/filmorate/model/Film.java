@@ -11,10 +11,11 @@ import java.time.LocalDate;
 @Data
 @Builder
 public class Film {
-    private int id;
 
     @NotBlank(message = "Укажите название фильма!")
     private final String name;
+
+    private int id;
 
     @Size(max = 200, message = "Максимальная длинна описания 200 символов!")
     private String description;

@@ -1,4 +1,4 @@
-package ru.yandex.practicum.filmorate.controllers;
+package ru.yandex.practicum.filmorate.controller;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,9 +16,9 @@ class UserControllerTest {
     public void createUserWithoutIdTest() {
 
         User user = User.builder()
-                .email("email_1@yandex.ru")
-                .login("login_1")
-                .name("name_1")
+                .email("email1@yandex.ru")
+                .login("login1")
+                .name("name1")
                 .birthday(LocalDate.of(2001, 8, 15))
                 .build();
 
@@ -30,9 +30,9 @@ class UserControllerTest {
 
         User user = User.builder()
                 .id(-1)
-                .email("email_1@yandex.ru")
-                .login("login_1")
-                .name("name_1")
+                .email("email1@yandex.ru")
+                .login("login1")
+                .name("name1")
                 .birthday(LocalDate.of(2001, 8, 15))
                 .build();
 
@@ -46,17 +46,17 @@ class UserControllerTest {
 
         User user1 = User.builder()
                 .id(1)
-                .email("email_1@yandex.ru")
-                .login("login_1")
-                .name("name_1")
+                .email("email1@yandex.ru")
+                .login("login1")
+                .name("name1")
                 .birthday(LocalDate.of(2001, 8, 15))
                 .build();
 
         User user2 = User.builder()
                 .id(1)
-                .email("email_2@yandex.ru")
-                .login("login_2")
-                .name("name_2")
+                .email("email2@yandex.ru")
+                .login("login2")
+                .name("name2")
                 .birthday(LocalDate.of(2001, 8, 15))
                 .build();
 
@@ -72,9 +72,9 @@ class UserControllerTest {
 
         User user = User.builder()
                 .id(1)
-                .email("email_1@yandex.ru")
+                .email("email1@yandex.ru")
                 .login("login 1")
-                .name("name_1")
+                .name("name1")
                 .birthday(LocalDate.of(2001, 8, 15))
                 .build();
         ValidationException exc = Assertions.assertThrows(
@@ -88,12 +88,12 @@ class UserControllerTest {
 
         User user = User.builder()
                 .id(1)
-                .email("email_1@yandex.ru")
-                .login("login_1")
+                .email("email1@yandex.ru")
+                .login("login1")
                 .birthday(LocalDate.of(2001, 8, 15))
                 .build();
 
-        assertEquals("login_1", userController.postUser(user).getName(), "login и name не совпадают");
+        assertEquals("login1", userController.postUser(user).getName(), "login и name не совпадают");
     }
 
     @Test
@@ -101,13 +101,13 @@ class UserControllerTest {
 
         User user = User.builder()
                 .id(1)
-                .email("email_1@yandex.ru")
-                .login("login_1")
+                .email("email1@yandex.ru")
+                .login("login1")
                 .name(" ")
                 .birthday(LocalDate.of(2001, 8, 15))
                 .build();
 
-        assertEquals("login_1", userController.postUser(user).getName(), "login и name не совпадают");
+        assertEquals("login1", userController.postUser(user).getName(), "login и name не совпадают");
     }
 
     @Test
@@ -115,9 +115,9 @@ class UserControllerTest {
 
         User user = User.builder()
                 .id(1)
-                .email("email_1@yandex.ru")
-                .login("login_1")
-                .name("name_1")
+                .email("email1@yandex.ru")
+                .login("login1")
+                .name("name1")
                 .build();
 
         assertNull(userController.postUser(user).getBirthday(), "Не создан пользователь без даты рождения");
@@ -128,9 +128,9 @@ class UserControllerTest {
 
         User user = User.builder()
                 .id(1)
-                .email("email_1@yandex.ru")
-                .login("login_1")
-                .name("name_1")
+                .email("email1@yandex.ru")
+                .login("login1")
+                .name("name1")
                 .birthday(LocalDate.of(2001, 8, 15))
                 .build();
         userController.updateUser(user);
@@ -142,9 +142,9 @@ class UserControllerTest {
     public void updateUserWithoutIdTest() {
 
         User user = User.builder()
-                .email("email_1@yandex.ru")
-                .login("login_1")
-                .name("name_1")
+                .email("email1@yandex.ru")
+                .login("login1")
+                .name("name1")
                 .birthday(LocalDate.of(2001, 8, 15))
                 .build();
 
@@ -156,24 +156,24 @@ class UserControllerTest {
 
         User user1 = User.builder()
                 .id(1)
-                .email("email_1@yandex.ru")
-                .login("login_1")
-                .name("name_1")
+                .email("email1@yandex.ru")
+                .login("login1")
+                .name("name1")
                 .birthday(LocalDate.of(2001, 8, 15))
                 .build();
         User user2 = User.builder()
                 .id(1)
-                .email("email_2@yandex.ru")
-                .login("login_2")
-                .name("name_2")
+                .email("email2@yandex.ru")
+                .login("login2")
+                .name("name2")
                 .birthday(LocalDate.of(2001, 8, 15))
                 .build();
         userController.updateUser(user1);
         userController.updateUser(user2);
 
-        assertFalse(userController.getUsers().contains(user1) , "Пользователь не обновлен");
+        assertFalse(userController.getUsers().contains(user1), "Пользователь не обновлен");
 
-        assertTrue(userController.getUsers().contains(user2) , "Пользователь не обновлен");
+        assertTrue(userController.getUsers().contains(user2), "Пользователь не обновлен");
     }
 
     @Test
@@ -181,9 +181,9 @@ class UserControllerTest {
 
         User user = User.builder()
                 .id(1)
-                .email("email_1@yandex.ru")
+                .email("email1@yandex.ru")
                 .login("login 1")
-                .name("name_1")
+                .name("name1")
                 .birthday(LocalDate.of(2001, 8, 15))
                 .build();
         ValidationException exc = Assertions.assertThrows(
@@ -197,12 +197,12 @@ class UserControllerTest {
 
         User user = User.builder()
                 .id(1)
-                .email("email_1@yandex.ru")
-                .login("login_1")
+                .email("email1@yandex.ru")
+                .login("login1")
                 .birthday(LocalDate.of(2001, 8, 15))
                 .build();
 
-        assertEquals("login_1", userController.updateUser(user).getName(), "login и name не совпадают");
+        assertEquals("login1", userController.updateUser(user).getName(), "login и name не совпадают");
     }
 
     @Test
@@ -210,13 +210,13 @@ class UserControllerTest {
 
         User user = User.builder()
                 .id(1)
-                .email("email_1@yandex.ru")
-                .login("login_1")
+                .email("email1@yandex.ru")
+                .login("login1")
                 .name(" ")
                 .birthday(LocalDate.of(2001, 8, 15))
                 .build();
 
-        assertEquals("login_1", userController.updateUser(user).getName(), "login и name не совпадают");
+        assertEquals("login1", userController.updateUser(user).getName(), "login и name не совпадают");
     }
 
     @Test
@@ -224,11 +224,13 @@ class UserControllerTest {
 
         User user = User.builder()
                 .id(1)
-                .email("email_1@yandex.ru")
-                .login("login_1")
-                .name("name_1")
+                .email("email1@yandex.ru")
+                .login("login1")
+                .name("name1")
                 .build();
 
         assertNull(userController.updateUser(user).getBirthday(), "Не создан пользователь без даты рождения");
+        //я не совсем понял что значит: не хватает переноса строки;
+        // весь код в IDEA точно помещается до специальной линии с права и отступы тоже расположены как положено
     }
 }

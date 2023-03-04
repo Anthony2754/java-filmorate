@@ -1,4 +1,4 @@
-package ru.yandex.practicum.filmorate.controllers;
+package ru.yandex.practicum.filmorate.controller;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -15,7 +15,6 @@ import ru.yandex.practicum.filmorate.model.Film;
 @Slf4j
 public class FilmController {
     private final Map<Integer, Film> films = new HashMap<>();
-
     private int id = 0;
 
     @PostMapping
