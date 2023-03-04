@@ -52,11 +52,7 @@
             <artifactId>hibernate-validator</artifactId>
             <version>6.2.5.Final</version>
         </dependency>
-		<dependency>
-			<groupId>ru.yandex.practicum</groupId>
-			<artifactId>filmorate</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
