@@ -18,6 +18,8 @@ public class Film {
     @NotBlank(message = "Укажите название фильма!")
     private final String name;
 
+    private final Set<Long> likes = new HashSet<>();
+
     @PositiveOrZero(message = "id должен быть положительным!")
     private long id;
 
@@ -28,6 +30,4 @@ public class Film {
 
     @Positive(message = "Продолжительность должна быть положительной!")
     private int duration;
-
-    private final Set<Long> likes = new HashSet<>();
 }

@@ -18,6 +18,8 @@ public class User {
     @NotBlank(message = "Укажите логин!")
     private final String login;
 
+    private final Set<Long> friends = new HashSet<>();
+
     @PositiveOrZero(message = "id должен быть больше нуля!")
     private long id;
 
@@ -26,6 +28,4 @@ public class User {
 
     @PastOrPresent(message = "Дата рождения не может быть в будущем!")
     private LocalDate birthday;
-
-    private final Set<Long> friends = new HashSet<>();
 }

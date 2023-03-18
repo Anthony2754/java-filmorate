@@ -1,4 +1,4 @@
-package ru.yandex.practicum.filmorate.exeptions;
+package ru.yandex.practicum.filmorate.errors;
 
 public class ErrorResponse {
     private final int status;
