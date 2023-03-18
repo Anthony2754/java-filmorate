@@ -1,7 +1,7 @@
 package ru.yandex.practicum.filmorate.controller;
 
 
-import jakarta.validation.*;
+import javax.validation.*;
 
 import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.AfterAll;
