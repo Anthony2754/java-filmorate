@@ -2,19 +2,27 @@ package ru.yandex.practicum.filmorate.controller;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.yandex.practicum.filmorate.exeptions.NotFoundException;
+import ru.yandex.practicum.filmorate.exeptions.RepeatException;
 import ru.yandex.practicum.filmorate.exeptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
+import ru.yandex.practicum.filmorate.service.FilmService;
+import ru.yandex.practicum.filmorate.service.UserService;
+import ru.yandex.practicum.filmorate.storage.film.InMemoryFilmStorage;
+import ru.yandex.practicum.filmorate.storage.user.InMemoryUserStorage;
 
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class FilmControllerTest {
-    FilmController filmController = new FilmController();
+    FilmController filmController = new FilmController(
+            new FilmService( new InMemoryFilmStorage(), new UserService(
+                    new InMemoryUserStorage())));
 
     @Test
-    public void createFilmWithoutIdTest() {
-
+    public void postFilmWithoutIdTest() {
         Film film = Film.builder()
                 .name("name1")
                 .description("description1")
@@ -26,24 +34,7 @@ class FilmControllerTest {
     }
 
     @Test
-    public void createFilmWithNegativeIdTest() {
-
-        Film film = Film.builder()
-                .id(-1)
-                .name("name1")
-                .description("description1")
-                .releaseDate(LocalDate.of(2020, 11, 12))
-                .duration(111)
-                .build();
-
-        ValidationException exc = Assertions.assertThrows(
-                ValidationException.class, () -> filmController.postFilm(film));
-        assertEquals("id должно быть положительным!", exc.getMessage());
-    }
-
-    @Test
-    public void createFilmWithOneIdTest() {
-
+    public void postFilmWithOneIdTest() {
         Film film1 = Film.builder()
                 .id(1)
                 .name("name1")
@@ -60,13 +51,13 @@ class FilmControllerTest {
                 .build();
         filmController.postFilm(film1);
 
-        ValidationException exc = Assertions.assertThrows(
-                ValidationException.class, () -> filmController.postFilm(film2));
+        RepeatException exc = Assertions.assertThrows(
+                RepeatException.class, () -> filmController.postFilm(film2));
         assertEquals("Кино уже добавлено!", exc.getMessage());
     }
 
     @Test
-    public void createFilmWithoutDescriptionTest() {
+    public void postFilmWithoutDescriptionTest() {
 
         Film film = Film.builder()
                 .id(1)
@@ -76,12 +67,11 @@ class FilmControllerTest {
                 .build();
         filmController.postFilm(film);
 
-        assertTrue(filmController.getFilms().contains(film), "Не добавлен фильм без описания");
+        assertTrue(filmController.getAllFilms().contains(film), "Не добавлен фильм без описания");
     }
 
     @Test
-    public void createFilmOlderReleaseDateTest() {
-
+    public void postFilmOlderReleaseDateTest() {
         Film film = Film.builder()
                 .id(1)
                 .name("name1")
@@ -90,14 +80,14 @@ class FilmControllerTest {
                 .duration(111)
                 .build();
 
-        ValidationException e = Assertions.assertThrows(
+        ValidationException exc = Assertions.assertThrows(
                 ValidationException.class, () -> filmController.postFilm(film));
 
-        assertEquals("Дата релиза не может быть раньше  28 декабря 1895 года!", e.getMessage());
+        assertEquals("Дата релиза не может быть раньше  28 декабря 1895 года!", exc.getMessage());
     }
 
     @Test
-    public void createFilmWithoutReleaseDateTest() {
+    public void postFilmWithoutReleaseDateTest() {
 
         Film film = Film.builder()
                 .id(1)
@@ -107,20 +97,7 @@ class FilmControllerTest {
                 .build();
         filmController.postFilm(film);
 
-        assertTrue(filmController.getFilms().contains(film), "Не добавлен фильм без даты релиза");
-    }
-
-    @Test
-    public void updateFilmWithoutIdTest() {
-
-        Film film = Film.builder()
-                .name("name1")
-                .description("description1")
-                .releaseDate(LocalDate.of(2020, 11, 12))
-                .duration(111)
-                .build();
-
-        assertEquals(1, filmController.putFilm(film).getId(), "Не сгенерирован id");
+        assertTrue(filmController.getAllFilms().contains(film), "Не добавлен фильм без даты релиза");
     }
 
     @Test
@@ -141,55 +118,24 @@ class FilmControllerTest {
                 .duration(111)
                 .build();
 
-        filmController.putFilm(film1);
-        filmController.putFilm(film2);
+        filmController.postFilm(film1);
+        filmController.updateFilm(film2);
 
-        assertFalse(filmController.getFilms().contains(film1), "Пользователь не обновлен");
-        assertTrue(filmController.getFilms().contains(film2), "Пользователь не обновлен");
+        assertFalse(filmController.getAllFilms().contains(film1), "Фильм не обновлен");
+        assertTrue(filmController.getAllFilms().contains(film2), "Фильм не обновлен");
     }
 
     @Test
-    public void updateFilmWithoutDescriptionTest() {
-
-        Film film = Film.builder()
+    public void updateAnUncreatedFilmTest() {
+        Film film1 = Film.builder()
                 .id(1)
                 .name("name1")
+                .description("description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
                 .build();
-        filmController.putFilm(film);
-
-        assertTrue(filmController.getFilms().contains(film), "Не добавлен фильм без описания");
-    }
-
-    @Test
-    public void updateFilmOlderReleaseDateTest() {
-
-        Film film = Film.builder()
-                .id(1)
-                .name("name1")
-                .description("description1")
-                .releaseDate(LocalDate.of(1020, 11, 12))
-                .duration(111)
-                .build();
-
-        ValidationException e = Assertions.assertThrows(
-                ValidationException.class, () -> filmController.putFilm(film));
-
-        assertEquals("Дата релиза не может быть раньше  28 декабря 1895 года!", e.getMessage());
-    }
-
-    @Test
-    public void updateFilmWithoutReleaseDateTest() {
-
-        Film film = Film.builder()
-                .id(1)
-                .name("name1")
-                .description("description1")
-                .duration(111)
-                .build();
-        filmController.putFilm(film);
-
-        assertTrue(filmController.getFilms().contains(film), "Не добавлен фильм без даты релиза");
+        NotFoundException e = Assertions.assertThrows(
+                NotFoundException.class, () -> filmController.updateFilm(film1));
+        assertEquals("Фильм с id 1 не найден", e.getMessage());
     }
 }

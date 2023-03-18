@@ -2,69 +2,84 @@ package ru.yandex.practicum.filmorate.controller;
 
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.*;
-import ru.yandex.practicum.filmorate.exeptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
+import ru.yandex.practicum.filmorate.service.UserService;
 
 @RestController
 @RequestMapping("/users")
 @Slf4j
 public class UserController {
-    private final Map<Integer, User> users = new HashMap<>();
-    private int id = 0;
+
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping
-    public User postUser (@Valid @RequestBody User user) {
-        logRequests("POST", "/users", user.toString());
-        User user1 = checkOnValidation(user);
-        if (!users.containsKey(user1.getId())) {
-            users.put(user1.getId(), user1);
-        } else {
-            throw new ValidationException("Такой пользователь уже существует!");
-        }
-        return user;
+    public User postUser(@Valid @RequestBody User user) {
+
+        logRequests(HttpMethod.POST, "/users", user.toString());
+        return userService.postUser(user);
     }
 
     @PutMapping
     public User updateUser(@Valid @RequestBody User user) {
-        logRequests("PUT", "/users", user.toString());
-        User user1 = checkOnValidation(user);
-        users.put(user1.getId(), user1);
-        return user;
+
+        logRequests(HttpMethod.PUT, "/users", user.toString());
+        return userService.updateUser(user);
+    }
+
+    @PutMapping("/{userId}/friends/{friendId}")
+    public List<User> addInFriend(@PathVariable long userId, @PathVariable long friendId) {
+
+        logRequests(HttpMethod.PUT, "/users/" + userId + "/friends/" + friendId, "no body");
+        return userService.addInFriend(userId, friendId);
+    }
+
+    @DeleteMapping("/{userId}/friends/{friendId}")
+    public List<User> deleteFromFriends(@PathVariable long userId, @PathVariable long friendId) {
+
+        logRequests(HttpMethod.DELETE, "/users/" + userId + "/friends/" + friendId, "no body");
+        return userService.deleteFromFriends(userId, friendId);
     }
 
     @GetMapping
-    public Collection<User> getUsers() {
-        logRequests("GET", "/users", "no body");
-        return users.values();
+    public Collection<User> getAllUsers() {
+
+        logRequests(HttpMethod.GET, "/users", "no body");
+        return userService.getUsers();
     }
 
-    private User checkOnValidation(User user) {
-        if (user.getId() == 0) {
-            idGenerate();
-            user.setId(id);
-        }
-        if (user.getId() < 0) {
-            throw new ValidationException("id должно быть положительным!");
-        }
-        if (user.getLogin().contains(" ")) {
-            throw new ValidationException("Логин должен быть без пробелов!");
-        }
-        if (user.getName() == null || user.getName().isBlank()) {
-            user.setName(user.getLogin());
-        }
-        return user;
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable long id) {
+
+        logRequests(HttpMethod.GET, "/users/" + id, "no body");
+        return userService.getUserById(id);
     }
 
-    private void idGenerate() {
-        id++;
+    @GetMapping("/{id}/friends")
+    public List<User> getListFriends(@PathVariable long id) {
+
+        logRequests(HttpMethod.GET, "/users/" + id + "/friends", "no body");
+        return userService.getFriendsList(id);
     }
 
-    private void logRequests(String method, String uri, String body) {
+    @GetMapping("/{userId}/friends/common/{friendId}")
+    public List<User> getListMutualFriends(@PathVariable long userId, @PathVariable long friendId) {
+
+        logRequests(HttpMethod.GET, "/users/" + userId + "/friends/common/" + friendId, "no body");
+        return userService.getListMutualFriends(userId, friendId);
+    }
+
+    private void logRequests(HttpMethod method, String uri, String body) {
         log.info("Получен запрос: '{} {}'. Тело запроса: '{}'", method, uri, body);
     }
 }
