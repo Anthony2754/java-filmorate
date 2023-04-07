@@ -43,7 +43,10 @@ public class InMemoryFilmStorage implements FilmStorage {
     }
 
     @Override
-    public Collection<Film> getAllFilms() { return films.values(); }
+    public Collection<Film> getAllFilms() {
+
+        return films.values();
+    }
 
     private void checkFilm(long id) {
         if (!films.containsKey(id)) {
