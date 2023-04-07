@@ -27,14 +27,14 @@ public class MpaDbStorage implements MpaStorage {
 
     @Override
     public Mpa getMpaById(int mpaId) {
-        Mpa MPA;
+        Mpa mpa;
         String request = "SELECT * FROM rating_mpa WHERE mpa_id = ?";
         try {
-            MPA = jdbcTemplate.queryForObject(request, this::rowInMpa, mpaId);
+            mpa = jdbcTemplate.queryForObject(request, this::rowInMpa, mpaId);
         } catch (DataAccessException e) {
             throw new NotFoundException(String.format("MPA с id %s не найдено", mpaId));
         }
-        return MPA;
+        return mpa;
     }
 
     private Mpa rowInMpa(ResultSet resultSet, int rowNum) throws SQLException {
