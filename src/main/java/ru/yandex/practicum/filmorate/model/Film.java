@@ -5,8 +5,7 @@ import javax.validation.constraints.*;
 import lombok.Builder;
 import lombok.Data;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Builder
@@ -15,7 +14,9 @@ public class Film {
     @NotBlank(message = "Укажите название фильма!")
     private final String name;
 
-    private final Set<Long> likes = new HashSet<>();
+    private final List<Long> likes;
+
+    private final List<Genre> genres;
 
     @PositiveOrZero(message = "id должен быть положительным!")
     private long id;
@@ -27,4 +28,9 @@ public class Film {
 
     @Positive(message = "Продолжительность должна быть положительной!")
     private int duration;
+
+    @NotNull(message = "Mpa must not be null")
+    private MPA MPA;
+
+    private int rate;
 }

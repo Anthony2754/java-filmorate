@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 import ru.yandex.practicum.filmorate.exeptions.NotFoundException;
 import ru.yandex.practicum.filmorate.exeptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
-import ru.yandex.practicum.filmorate.storage.user.UserStorage;
+import ru.yandex.practicum.filmorate.storage.dal.FriendsStorage;
+import ru.yandex.practicum.filmorate.storage.dal.UserStorage;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -21,7 +21,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class UserService {
     private final UserStorage userStorage;
-    private long id = 0;
+
+    private final FriendsStorage friendsStorage;
 
     public User postUser(User user) {
 
@@ -47,7 +48,7 @@ public class UserService {
         return userInStorage;
     }
 
-    public Collection<User> getUsers() {
+    public Collection<User> getAllUsers() {
 
         Collection<User> usersInStorage = userStorage.getAllUsers();
 
@@ -55,82 +56,59 @@ public class UserService {
         return usersInStorage;
     }
 
-    public List<User> addInFriend(long id, long friendId) {
+    public void addInFriend(long id, long friendId) {
 
-        userStorage.getUserById(id).getFriends().add(friendId);
-        userStorage.getUserById(friendId).getFriends().add(id);
-        List<User> friends = List.of(userStorage.getUserById(id), userStorage.getUserById(friendId));
+        boolean inFriends;
+        userStorage.getUserById(id);
+        userStorage.getUserById(friendId);
+        inFriends = friendsStorage.addInFriend(id, friendId);
 
-        saveInLog(HttpMethod.PUT, "/users/" + id + "/friends/", friends.toString());
-        return friends;
+        saveInLog(HttpMethod.PUT, "/users/" + id + "/friends/" + friendId, ((Boolean) inFriends).toString());
     }
 
-    public List<User> deleteFromFriends(long userId, long friendId) {
+    public void deleteFromFriends(long userId, long friendId) {
 
-        User user = userStorage.getUserById(userId);
-        User friend = userStorage.getUserById(friendId);
+        boolean deleteFriends;
+        userStorage.getUserById(userId);
+        userStorage.getUserById(friendId);
+        deleteFriends = friendsStorage.deleteFromFriends(userId, friendId);
 
-        if (!user.getFriends().contains(friendId)) {
+        if (!deleteFriends) {
             throw new NotFoundException(
                     String.format("Пользователь с id %s не добавлен в друзья к пользователю с id %s",
                             friendId, userId));
         }
 
-        if (!friend.getFriends().contains(userId)) {
-            throw new NotFoundException(
-                    String.format("Пользователь с id %s не добавлен в друзья к пользователю с id %s",
-                    userId, friendId));
-        }
-
-        user.getFriends().remove(friendId);
-        friend.getFriends().remove(userId);
-        List<User> friends = List.of(user, friend);
-
-        saveInLog(HttpMethod.DELETE, "/users/" + userId + "/friends/" + friendId, friends.toString());
-        return friends;
+        saveInLog(HttpMethod.DELETE, "/users/" + userId + "/friends/" + friendId, ((Boolean) deleteFriends).toString());
     }
 
     public List<User> getFriendsList(long id) {
 
-        Set<Long> friends = userStorage.getUserById(id).getFriends();
-        List<User> friendsList = userStorage.getAllUsers().stream()
-                .filter(user -> friends.contains(user.getId()))
+        userStorage.getUserById(id);
+        List<User> listFriends = friendsStorage.getFriendsList(id).stream()
+                .map(userStorage::getUserById)
                 .collect(Collectors.toList());
 
-        saveInLog(HttpMethod.GET, "/users/" + id + "/friends", friendsList.toString());
-        return friendsList;
+        saveInLog(HttpMethod.GET, "/users/" + id + "/friends", listFriends.toString());
+        return listFriends;
     }
 
     public List<User> getListMutualFriends(long userId, long friendId) {
 
-        User user = userStorage.getUserById(userId);
-        User friendUser = userStorage.getUserById(friendId);
-
-        Set<Long> friends = user.getFriends();
-        Set<Long> otherFriends = friendUser.getFriends();
-
-        List<User> mutualFriends = userStorage.getAllUsers().stream()
-                .filter(u -> friends.contains(u.getId()))
-                .filter(u -> otherFriends.contains(u.getId()))
+        userStorage.getUserById(userId);
+        userStorage.getUserById(friendId);
+        List<User> listMutualFriends = friendsStorage.getListMutualFriends(userId, friendId).stream()
+                .map(userStorage::getUserById)
                 .collect(Collectors.toList());
 
-        saveInLog(HttpMethod.GET, "/users/" + userId + "/friends/common/" + friendId, mutualFriends.toString());
-        return mutualFriends;
-    }
-
-    private void idGenerate() {
-        id++;
+        saveInLog(HttpMethod.GET, "/users/" + userId + "/friends/common/" + friendId, listMutualFriends.toString());
+        return listMutualFriends;
     }
 
     private User checkOnValidation(User user) {
 
         if (user.getLogin().contains(" ")) {
             throw new ValidationException("Логин должен быть без пробелов!");
-        }
-
-        if (user.getId() == 0) {
-            idGenerate();
-            user.setId(id);
         }
 
         if (user.getName() == null || user.getName().isBlank()) {

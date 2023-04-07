@@ -34,17 +34,17 @@ public class FilmController {
     }
 
     @PutMapping("/{filmId}/like/{userId}")
-    public Film addLike(@PathVariable long filmId, @PathVariable long userId) {
+    public void addLike(@PathVariable long filmId, @PathVariable long userId) {
 
         logRequests(HttpMethod.PUT, "/films/" + filmId + "/like/" + userId, "no body");
-        return filmService.addLike(filmId, userId);
+        filmService.addLike(filmId, userId);
     }
 
     @DeleteMapping("/{filmId}/like/{userId}")
-    public Film deleteLike(@PathVariable long filmId, @PathVariable long userId) {
+    public void deleteLike(@PathVariable long filmId, @PathVariable long userId) {
 
         logRequests(HttpMethod.DELETE, "/films/" + filmId + "/like/" + userId, "no body");
-        return filmService.deleteLike(filmId, userId);
+        filmService.deleteLike(filmId, userId);
     }
 
     @GetMapping
@@ -52,6 +52,12 @@ public class FilmController {
 
         logRequests(HttpMethod.GET, "/films", "no body");
         return filmService.getAllFilms();
+    }
+
+    @GetMapping("/{id}/likes")//получить список id пользователей, поставивших лайк
+    public List<Long> getListOfLikes(@PathVariable long id) {
+        logRequests(HttpMethod.GET, "/films/" + id + "/likes", "no body");
+        return filmService.getListOfLikes(id);
     }
 
     @GetMapping("/{id}")

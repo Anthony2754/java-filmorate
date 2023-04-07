@@ -34,24 +34,24 @@ public class UserController {
     }
 
     @PutMapping("/{userId}/friends/{friendId}")
-    public List<User> addInFriend(@PathVariable long userId, @PathVariable long friendId) {
+    public void addInFriend(@PathVariable long userId, @PathVariable long friendId) {
 
         logRequests(HttpMethod.PUT, "/users/" + userId + "/friends/" + friendId, "no body");
-        return userService.addInFriend(userId, friendId);
+        userService.addInFriend(userId, friendId);
     }
 
     @DeleteMapping("/{userId}/friends/{friendId}")
-    public List<User> deleteFromFriends(@PathVariable long userId, @PathVariable long friendId) {
+    public void deleteFromFriends(@PathVariable long userId, @PathVariable long friendId) {
 
         logRequests(HttpMethod.DELETE, "/users/" + userId + "/friends/" + friendId, "no body");
-        return userService.deleteFromFriends(userId, friendId);
+        userService.deleteFromFriends(userId, friendId);
     }
 
     @GetMapping
     public Collection<User> getAllUsers() {
 
         logRequests(HttpMethod.GET, "/users", "no body");
-        return userService.getUsers();
+        return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")

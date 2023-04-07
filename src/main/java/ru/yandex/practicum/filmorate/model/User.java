@@ -3,10 +3,8 @@ package ru.yandex.practicum.filmorate.model;
 import javax.validation.constraints.*;
 import lombok.Builder;
 import lombok.Data;
-
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Builder
@@ -18,7 +16,7 @@ public class User {
     @NotBlank(message = "Укажите логин!")
     private final String login;
 
-    private final Set<Long> friends = new HashSet<>();
+    private final List<Long> friends;
 
     @PositiveOrZero(message = "id должен быть больше нуля!")
     private long id;
