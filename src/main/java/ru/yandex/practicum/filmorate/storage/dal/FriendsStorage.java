@@ -8,5 +8,4 @@ public interface FriendsStorage {
     boolean deleteFromFriends(long userId, long friendId);
     List<Long> getFriendsList(long userId);
     List<Long> getListMutualFriends(long userId, long friendId);
-
 }
