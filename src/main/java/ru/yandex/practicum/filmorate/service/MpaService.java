@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
-import ru.yandex.practicum.filmorate.model.MpaModel;
+import ru.yandex.practicum.filmorate.model.Mpa;
 import ru.yandex.practicum.filmorate.storage.dal.MpaStorage;
 
 import java.util.Collection;
@@ -15,16 +15,16 @@ import java.util.Collection;
 public class MpaService {
     private final MpaStorage mpaStorage;
 
-    public Collection<MpaModel> getMpa() {
-        Collection<MpaModel> mpaModelInStorage = mpaStorage.getAllMpa();
-        saveInLog(HttpMethod.GET, "/mpa", mpaModelInStorage.toString());
-        return mpaModelInStorage;
+    public Collection<Mpa> getMpa() {
+        Collection<Mpa> mpaInStorage = mpaStorage.getAllMpa();
+        saveInLog(HttpMethod.GET, "/mpa", mpaInStorage.toString());
+        return mpaInStorage;
     }
 
-    public MpaModel getMpaById(int id) {
-        MpaModel mpaModelInStorage = mpaStorage.getMpaById(id);
-        saveInLog(HttpMethod.GET, "/mpa/" + id, mpaModelInStorage.toString());
-        return mpaModelInStorage;
+    public Mpa getMpaById(int id) {
+        Mpa mpaInStorage = mpaStorage.getMpaById(id);
+        saveInLog(HttpMethod.GET, "/mpa/" + id, mpaInStorage.toString());
+        return mpaInStorage;
     }
 
     private void saveInLog(HttpMethod method, String uri, String storage) {

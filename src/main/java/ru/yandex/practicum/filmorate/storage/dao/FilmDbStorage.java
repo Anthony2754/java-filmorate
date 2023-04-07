@@ -63,7 +63,7 @@ public class FilmDbStorage implements FilmStorage {
                 , film.getReleaseDate()
                 , film.getDuration()
                 , film.getRate()
-                , film.getMpaModel().getId()
+                , film.getMpa().getId()
                 , film.getId());
 
         Film oldFilm = getFilmById(film.getId());
@@ -99,7 +99,7 @@ public class FilmDbStorage implements FilmStorage {
                 .releaseDate(resultSet.getDate("release_date").toLocalDate())
                 .duration(resultSet.getInt("duration"))
                 .rate(resultSet.getInt("rate"))
-                .mpaModel(mpaService.getMpaById(resultSet.getInt("mpa_id")))
+                .mpa(mpaService.getMpaById(resultSet.getInt("mpa_id")))
                 .likes(likesStorage.getLikesList(resultSet.getLong("film_id")))
                 .genres(genreService.getListOfGenres(resultSet.getLong("film_id")))
                 .build();
@@ -112,7 +112,7 @@ public class FilmDbStorage implements FilmStorage {
         values.put("release_date", film.getReleaseDate());
         values.put("duration", film.getDuration());
         values.put("rate", film.getRate());
-        values.put("MPA_id", film.getMpaModel().getId());
+        values.put("MPA_id", film.getMpa().getId());
         return values;
     }
 }
