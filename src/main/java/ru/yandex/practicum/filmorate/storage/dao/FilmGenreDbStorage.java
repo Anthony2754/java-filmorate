@@ -29,12 +29,14 @@ public class FilmGenreDbStorage implements FilmGenreStorage {
                 .distinct()
                 .collect(Collectors.toList());
         getJdbcTemplate().batchUpdate(request, new BatchPreparedStatementSetter() {
+
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
                 Genre genre = uniqueGenres.get(i);
                 ps.setLong(1, filmId);
                 ps.setInt(2, genre.getId());
             }
+
             @Override
             public int getBatchSize() {
                 return uniqueGenres.size();
