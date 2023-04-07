@@ -55,6 +55,7 @@ public class InMemoryFilmStorage implements FilmStorage {
     }
 
     private void idGenerate() {
+
         id++;
     }
 }

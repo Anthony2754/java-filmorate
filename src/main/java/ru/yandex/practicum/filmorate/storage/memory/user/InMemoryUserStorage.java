@@ -39,12 +39,16 @@ public class InMemoryUserStorage implements UserStorage {
 
     @Override
     public User getUserById(long id) {
+
         checkUser(id);
         return users.get(id);
     }
 
     @Override
-    public Collection<User> getAllUsers() { return users.values(); }
+    public Collection<User> getAllUsers() {
+
+        return users.values();
+    }
 
     private void checkUser(long id) {
         if (!users.containsKey(id)) {
@@ -53,6 +57,7 @@ public class InMemoryUserStorage implements UserStorage {
     }
 
     private void idGenerate() {
+
         id++;
     }
 }
