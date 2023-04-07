@@ -39,7 +39,7 @@ public class FilmAnnotationTest {
                 .description("description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
-                .MPAModel(MpaModel.builder().id(5).name("PG").build())
+                .mpaModel(MpaModel.builder().id(5).name("PG").build())
                 .build();
 
         Set<ConstraintViolation<Film>> setViolations = validator.validate(film);
@@ -55,7 +55,7 @@ public class FilmAnnotationTest {
                 .description("description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
-                .MPAModel(MpaModel.builder().id(5).name("PG").build())
+                .mpaModel(MpaModel.builder().id(5).name("PG").build())
                 .build();
 
         Set<ConstraintViolation<Film>> setViolations = validator.validate(film);
@@ -75,7 +75,7 @@ public class FilmAnnotationTest {
                 .description("description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
-                .MPAModel(MpaModel.builder().id(5).name("PG").build())
+                .mpaModel(MpaModel.builder().id(5).name("PG").build())
                 .build();
 
         Set<ConstraintViolation<Film>> setViolations = validator.validate(film);
@@ -96,7 +96,7 @@ public class FilmAnnotationTest {
                 .description(RandomString.make(201))
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
-                .MPAModel(MpaModel.builder().id(5).name("PG").build())
+                .mpaModel(MpaModel.builder().id(5).name("PG").build())
                 .build();
 
         Set<ConstraintViolation<Film>> setViolations = validator.validate(film);
@@ -116,7 +116,7 @@ public class FilmAnnotationTest {
                 .description("description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(-1)
-                .MPAModel(MpaModel.builder().id(5).name("PG").build())
+                .mpaModel(MpaModel.builder().id(5).name("PG").build())
                 .build();
 
         Set<ConstraintViolation<Film>> setViolations = validator.validate(film);
@@ -136,7 +136,7 @@ public class FilmAnnotationTest {
                 .description("description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(0)
-                .MPAModel(MpaModel.builder().id(5).name("PG").build())
+                .mpaModel(MpaModel.builder().id(5).name("PG").build())
                 .build();
 
         Set<ConstraintViolation<Film>> setViolations = validator.validate(film);

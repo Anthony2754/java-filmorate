@@ -29,8 +29,8 @@ public class Film {
     @Positive(message = "Продолжительность должна быть положительной!")
     private int duration;
 
-    @NotNull(message = "Mpa must not be null")
-    private MpaModel MPAModel;
+    @NotNull(message = "Mpa = null")
+    private MpaModel mpaModel;
 
     private int rate;
 }

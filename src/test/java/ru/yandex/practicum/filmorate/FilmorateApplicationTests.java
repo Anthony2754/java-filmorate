@@ -288,7 +288,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPAModel(MpaModel.builder().id(1).name("G").build())
+            .mpaModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(new ArrayList<>())
             .build();
@@ -306,7 +306,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPAModel(MpaModel.builder().id(1).name("G").build())
+            .mpaModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(Genre.builder().id(1).name("Комедия").build()))
             .build();
@@ -319,7 +319,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(5)
-            .MPAModel(MpaModel.builder().id(1).name("G").build())
+            .mpaModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(new ArrayList<>())
             .build();
@@ -336,7 +336,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPAModel(MpaModel.builder().id(1).name("G").build())
+            .mpaModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(Genre.builder().id(1).name("Комедия").build()))
             .build();
@@ -364,7 +364,7 @@ class FilmorateApplicationTests {
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
                 .rate(3)
-                .MPAModel(MpaModel.builder().id(1).name("G").build())
+                .mpaModel(MpaModel.builder().id(1).name("G").build())
                 .likes(new ArrayList<>())
                 .genres(List.of(Genre.builder().id(2).name("Драма").build()))
                 .build();
@@ -374,7 +374,7 @@ class FilmorateApplicationTests {
                 .releaseDate(LocalDate.of(2022, 11, 12))
                 .duration(111)
                 .rate(5)
-                .MPAModel(MpaModel.builder().id(1).name("G").build())
+                .mpaModel(MpaModel.builder().id(1).name("G").build())
                 .likes(new ArrayList<>())
                 .genres(new ArrayList<>())
                 .build();
@@ -395,7 +395,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPAModel(MpaModel.builder().id(1).name("G").build())
+            .mpaModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(Genre.builder().id(2).name("Драма").build()))
             .build();
@@ -425,7 +425,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(109)
             .rate(1)
-            .MPAModel(MpaModel.builder().id(1).name("G").build())
+            .mpaModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(Genre.builder().id(2).name("Драма").build()))
             .build();
@@ -452,7 +452,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPAModel(MpaModel.builder().id(1).name("G").build())
+            .mpaModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(Genre.builder().id(2).name("Драма").build()))
             .build();
@@ -482,7 +482,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPAModel(MpaModel.builder().id(1).name("G").build())
+            .mpaModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(Genre.builder().id(2).name("Драма").build()))
             .build();
@@ -517,7 +517,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(1)
-            .MPAModel(MpaModel.builder().id(1).name("G").build())
+            .mpaModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(Genre.builder().id(2).name("Драма").build()))
             .build();
@@ -528,7 +528,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2022, 11, 12))
             .duration(111)
             .rate(5)
-            .MPAModel(MpaModel.builder().id(1).name("G").build())
+            .mpaModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(new ArrayList<>())
             .build();
@@ -585,7 +585,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPAModel(MpaModel.builder().id(1).name("G").build())
+            .mpaModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(Genre.builder().id(2).name("Драма").build()))
             .build();
@@ -608,7 +608,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPAModel(MpaModel.builder().id(1).name("G").build())
+            .mpaModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(genreId3))
             .build();
@@ -630,7 +630,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPAModel(MpaModel.builder().id(1).name("G").build())
+            .mpaModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(genreId2))
             .build();
