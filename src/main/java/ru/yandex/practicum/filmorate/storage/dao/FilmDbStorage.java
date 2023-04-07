@@ -58,14 +58,8 @@ public class FilmDbStorage implements FilmStorage {
     public Film updateFilm(Film film) {
         String request = "UPDATE films SET name = ?, description = ?, release_date = ?, duration = ?, rate = ?, " +
                 "mpa_id = ? WHERE film_id = ?";
-        jdbcTemplate.update(request
-                , film.getName()
-                , film.getDescription()
-                , film.getReleaseDate()
-                , film.getDuration()
-                , film.getRate()
-                , film.getMpa().getId()
-                , film.getId());
+        jdbcTemplate.update(request, film.getName(), film.getDescription(), film.getReleaseDate(), film.getDuration(),
+                film.getRate(), film.getMpa().getId(), film.getId());
 
         Film oldFilm = getFilmById(film.getId());
 
