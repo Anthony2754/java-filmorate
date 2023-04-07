@@ -13,7 +13,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.jdbc.core.JdbcTemplate;
 import ru.yandex.practicum.filmorate.model.Genre;
-import ru.yandex.practicum.filmorate.model.Mpa;
+import ru.yandex.practicum.filmorate.model.MpaModel;
 import ru.yandex.practicum.filmorate.storage.dal.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -288,7 +288,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPA(Mpa.builder().id(1).name("G").build())
+            .MPAModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(new ArrayList<>())
             .build();
@@ -306,7 +306,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPA(Mpa.builder().id(1).name("G").build())
+            .MPAModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(Genre.builder().id(1).name("Комедия").build()))
             .build();
@@ -319,7 +319,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(5)
-            .MPA(Mpa.builder().id(1).name("G").build())
+            .MPAModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(new ArrayList<>())
             .build();
@@ -336,7 +336,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPA(Mpa.builder().id(1).name("G").build())
+            .MPAModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(Genre.builder().id(1).name("Комедия").build()))
             .build();
@@ -364,7 +364,7 @@ class FilmorateApplicationTests {
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
                 .rate(3)
-                .MPA(Mpa.builder().id(1).name("G").build())
+                .MPAModel(MpaModel.builder().id(1).name("G").build())
                 .likes(new ArrayList<>())
                 .genres(List.of(Genre.builder().id(2).name("Драма").build()))
                 .build();
@@ -374,7 +374,7 @@ class FilmorateApplicationTests {
                 .releaseDate(LocalDate.of(2022, 11, 12))
                 .duration(111)
                 .rate(5)
-                .MPA(Mpa.builder().id(1).name("G").build())
+                .MPAModel(MpaModel.builder().id(1).name("G").build())
                 .likes(new ArrayList<>())
                 .genres(new ArrayList<>())
                 .build();
@@ -395,7 +395,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPA(Mpa.builder().id(1).name("G").build())
+            .MPAModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(Genre.builder().id(2).name("Драма").build()))
             .build();
@@ -425,7 +425,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(109)
             .rate(1)
-            .MPA(Mpa.builder().id(1).name("G").build())
+            .MPAModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(Genre.builder().id(2).name("Драма").build()))
             .build();
@@ -452,7 +452,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPA(Mpa.builder().id(1).name("G").build())
+            .MPAModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(Genre.builder().id(2).name("Драма").build()))
             .build();
@@ -482,7 +482,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPA(Mpa.builder().id(1).name("G").build())
+            .MPAModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(Genre.builder().id(2).name("Драма").build()))
             .build();
@@ -517,7 +517,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(1)
-            .MPA(Mpa.builder().id(1).name("G").build())
+            .MPAModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(Genre.builder().id(2).name("Драма").build()))
             .build();
@@ -528,7 +528,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2022, 11, 12))
             .duration(111)
             .rate(5)
-            .MPA(Mpa.builder().id(1).name("G").build())
+            .MPAModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(new ArrayList<>())
             .build();
@@ -585,7 +585,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPA(Mpa.builder().id(1).name("G").build())
+            .MPAModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(Genre.builder().id(2).name("Драма").build()))
             .build();
@@ -608,7 +608,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPA(Mpa.builder().id(1).name("G").build())
+            .MPAModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(genreId3))
             .build();
@@ -630,7 +630,7 @@ class FilmorateApplicationTests {
             .releaseDate(LocalDate.of(2020, 11, 12))
             .duration(111)
             .rate(3)
-            .MPA(Mpa.builder().id(1).name("G").build())
+            .MPAModel(MpaModel.builder().id(1).name("G").build())
             .likes(new ArrayList<>())
             .genres(List.of(genreId2))
             .build();
@@ -643,28 +643,28 @@ class FilmorateApplicationTests {
 
     @Test
     void getMpaTest() {
-        Mpa mpa = Mpa.builder()
+        MpaModel mpaModel = MpaModel.builder()
                 .id(1)
                 .name("G")
                 .build();
 
         assertThat(mpaStorage.getAllMpa(), hasSize(5));
-        assertThat(mpaStorage.getAllMpa(), hasItem(mpa));
+        assertThat(mpaStorage.getAllMpa(), hasItem(mpaModel));
     }
 
     @Test
     void getMpaById() {
-        Mpa MpaId1 = Mpa.builder()
+        MpaModel mpaModelId1 = MpaModel.builder()
             .id(1)
             .name("G")
             .build();
 
-        Mpa MpaId5 = Mpa.builder()
+        MpaModel mpaModelId5 = MpaModel.builder()
             .id(5)
             .name("NC-17")
             .build();
 
-        assertThat(mpaStorage.getMpaById(1), equalTo(MpaId1));
-        assertThat(mpaStorage.getMpaById(5), equalTo(MpaId5));
+        assertThat(mpaStorage.getMpaById(1), equalTo(mpaModelId1));
+        assertThat(mpaStorage.getMpaById(5), equalTo(mpaModelId5));
     }
 }
