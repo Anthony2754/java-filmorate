@@ -8,7 +8,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.yandex.practicum.filmorate.model.Film;
-import ru.yandex.practicum.filmorate.model.MPA;
+import ru.yandex.practicum.filmorate.model.Mpa;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -39,7 +39,7 @@ public class FilmAnnotationTest {
                 .description("description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
-                .MPA(MPA.builder().id(5).name("PG").build())
+                .MPA(Mpa.builder().id(5).name("PG").build())
                 .build();
 
         Set<ConstraintViolation<Film>> setViolations = validator.validate(film);
@@ -55,7 +55,7 @@ public class FilmAnnotationTest {
                 .description("description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
-                .MPA(MPA.builder().id(5).name("PG").build())
+                .MPA(Mpa.builder().id(5).name("PG").build())
                 .build();
 
         Set<ConstraintViolation<Film>> setViolations = validator.validate(film);
@@ -75,7 +75,7 @@ public class FilmAnnotationTest {
                 .description("description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
-                .MPA(MPA.builder().id(5).name("PG").build())
+                .MPA(Mpa.builder().id(5).name("PG").build())
                 .build();
 
         Set<ConstraintViolation<Film>> setViolations = validator.validate(film);
@@ -96,7 +96,7 @@ public class FilmAnnotationTest {
                 .description(RandomString.make(201))
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(111)
-                .MPA(MPA.builder().id(5).name("PG").build())
+                .MPA(Mpa.builder().id(5).name("PG").build())
                 .build();
 
         Set<ConstraintViolation<Film>> setViolations = validator.validate(film);
@@ -116,7 +116,7 @@ public class FilmAnnotationTest {
                 .description("description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(-1)
-                .MPA(MPA.builder().id(5).name("PG").build())
+                .MPA(Mpa.builder().id(5).name("PG").build())
                 .build();
 
         Set<ConstraintViolation<Film>> setViolations = validator.validate(film);
@@ -136,7 +136,7 @@ public class FilmAnnotationTest {
                 .description("description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
                 .duration(0)
-                .MPA(MPA.builder().id(5).name("PG").build())
+                .MPA(Mpa.builder().id(5).name("PG").build())
                 .build();
 
         Set<ConstraintViolation<Film>> setViolations = validator.validate(film);

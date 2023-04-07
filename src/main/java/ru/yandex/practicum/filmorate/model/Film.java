@@ -30,7 +30,7 @@ public class Film {
     private int duration;
 
     @NotNull(message = "Mpa must not be null")
-    private MPA MPA;
+    private Mpa MPA;
 
     private int rate;
 }

@@ -7,7 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.yandex.practicum.filmorate.exeptions.NotFoundException;
-import ru.yandex.practicum.filmorate.model.MPA;
+import ru.yandex.practicum.filmorate.model.Mpa;
 import ru.yandex.practicum.filmorate.storage.dal.MpaStorage;
 
 import java.sql.ResultSet;
@@ -21,14 +21,14 @@ public class MpaDbStorage implements MpaStorage {
     private final JdbcTemplate jdbcTemplate;
 
     @Override
-    public Collection<MPA> getAllMpa() {
+    public Collection<Mpa> getAllMpa() {
         String request = "SELECT * FROM rating_mpa";
         return jdbcTemplate.query(request, this::rowInMpa);
     }
 
     @Override
-    public MPA getMpaById(int mpaId) {
-        MPA MPA;
+    public Mpa getMpaById(int mpaId) {
+        Mpa MPA;
         String request = "SELECT * FROM rating_mpa WHERE mpa_id = ?";
         try {
             MPA = jdbcTemplate.queryForObject(request, this::rowInMpa, mpaId);
@@ -38,8 +38,8 @@ public class MpaDbStorage implements MpaStorage {
         return MPA;
     }
 
-    private MPA rowInMpa(ResultSet resultSet, int rowNum) throws SQLException {
-        return MPA.builder()
+    private Mpa rowInMpa(ResultSet resultSet, int rowNum) throws SQLException {
+        return Mpa.builder()
                 .id(resultSet.getInt("MPA_id"))
                 .name(resultSet.getString("name"))
                 .build();
