@@ -22,6 +22,7 @@ import java.util.*;
 @RequiredArgsConstructor
 @Slf4j
 public class UserDbStorage implements UserStorage {
+
     private final JdbcTemplate jdbcTemplate;
     private final FriendsStorage friendsStorage;
 

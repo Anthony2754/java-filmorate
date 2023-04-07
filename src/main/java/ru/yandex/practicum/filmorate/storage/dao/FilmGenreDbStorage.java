@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 public class FilmGenreDbStorage implements FilmGenreStorage {
+
     private final JdbcTemplate jdbcTemplate;
 
     @Override

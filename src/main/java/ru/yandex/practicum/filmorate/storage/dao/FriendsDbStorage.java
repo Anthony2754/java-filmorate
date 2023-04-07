@@ -16,6 +16,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 public class FriendsDbStorage implements FriendsStorage {
+
     private final JdbcTemplate jdbcTemplate;
 
     @Override

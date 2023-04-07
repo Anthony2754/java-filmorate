@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class UserService {
+
     private final UserStorage userStorage;
 
     private final FriendsStorage friendsStorage;

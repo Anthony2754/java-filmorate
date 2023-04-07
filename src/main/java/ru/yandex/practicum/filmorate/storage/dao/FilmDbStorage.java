@@ -28,6 +28,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 public class FilmDbStorage implements FilmStorage {
+
     private final JdbcTemplate jdbcTemplate;
     private final LikesStorage likesStorage;
     private final MpaService mpaService;

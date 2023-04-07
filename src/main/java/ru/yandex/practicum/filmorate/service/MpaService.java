@@ -13,6 +13,7 @@ import java.util.Collection;
 @RequiredArgsConstructor
 @Slf4j
 public class MpaService {
+
     private final MpaStorage mpaStorage;
 
     public Collection<Mpa> getMpa() {

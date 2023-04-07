@@ -18,6 +18,7 @@ import java.util.Collection;
 @RequiredArgsConstructor
 @Slf4j
 public class MpaDbStorage implements MpaStorage {
+
     private final JdbcTemplate jdbcTemplate;
 
     @Override

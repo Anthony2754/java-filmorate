@@ -15,6 +15,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 public class LikesDbStorage implements LikesStorage {
+
     private final JdbcTemplate jdbcTemplate;
 
     @Override
