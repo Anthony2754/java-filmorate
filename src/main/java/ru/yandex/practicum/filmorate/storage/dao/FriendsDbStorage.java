@@ -27,7 +27,7 @@ public class FriendsDbStorage implements FriendsStorage {
                 .build();
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("friends");
-        return simpleJdbcInsert.execute(inMap(friends)) > 0;
+        return simpleJdbcInsert.execute(saveInMap(friends)) > 0;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class FriendsDbStorage implements FriendsStorage {
         return jdbcTemplate.queryForList(request, Long.class, userId, friendId);
     }
 
-    private Map<String, Object> inMap(Friends friends) {
+    private Map<String, Object> saveInMap(Friends friends) {
         Map<String, Object> values = new HashMap<>();
         values.put("user_Id", friends.getUserId());
         values.put("friend_Id", friends.getFriendId());

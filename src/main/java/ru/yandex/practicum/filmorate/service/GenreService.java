@@ -12,6 +12,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static ru.yandex.practicum.filmorate.log.Logs.saveInLog;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -38,10 +40,6 @@ public class GenreService {
                 .collect(Collectors.toList());
 
         return listGenre;
-    }
-
-    private void saveInLog(HttpMethod method, String uri, String storage) {
-        log.info("Получен запрос: '{} {}'. В хранилище: '{}'", method, uri, storage);
     }
 }
 

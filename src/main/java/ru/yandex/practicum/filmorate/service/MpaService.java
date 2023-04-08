@@ -9,6 +9,8 @@ import ru.yandex.practicum.filmorate.storage.dal.MpaStorage;
 
 import java.util.Collection;
 
+import static ru.yandex.practicum.filmorate.log.Logs.saveInLog;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -26,9 +28,5 @@ public class MpaService {
         Mpa mpaInStorage = mpaStorage.getMpaById(id);
         saveInLog(HttpMethod.GET, "/mpa/" + id, mpaInStorage.toString());
         return mpaInStorage;
-    }
-
-    private void saveInLog(HttpMethod method, String uri, String storage) {
-        log.info("Получен запрос: '{} {}'. В хранилище: '{}'", method, uri, storage);
     }
 }

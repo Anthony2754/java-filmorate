@@ -26,7 +26,7 @@ public class LikesDbStorage implements LikesStorage {
                 .build();
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("likes");
-        return simpleJdbcInsert.execute(inMap(likes)) > 0;
+        return simpleJdbcInsert.execute(saveInMap(likes)) > 0;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class LikesDbStorage implements LikesStorage {
         return likes;
     }
 
-    private Map<String, Object> inMap(Likes likes) {
+    private Map<String, Object> saveInMap(Likes likes) {
         Map<String, Object> values = new HashMap<>();
         values.put("user_Id", likes.getUserId());
         values.put("film_Id", likes.getFilmId());

@@ -37,7 +37,7 @@ public class UserDbStorage implements UserStorage {
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("users")
                 .usingGeneratedKeyColumns("user_id");
-        long userId = simpleJdbcInsert.executeAndReturnKey(inMap(user)).longValue();
+        long userId = simpleJdbcInsert.executeAndReturnKey(saveInMap(user)).longValue();
         return getUserById(userId);
     }
 
@@ -63,7 +63,7 @@ public class UserDbStorage implements UserStorage {
         return user;
     }
 
-    private Map<String, Object> inMap(User user) {
+    private Map<String, Object> saveInMap(User user) {
         Map<String, Object> values = new HashMap<>();
         values.put("email", user.getEmail());
         values.put("login", user.getLogin());

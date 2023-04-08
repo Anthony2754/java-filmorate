@@ -14,6 +14,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static ru.yandex.practicum.filmorate.log.Logs.saveInLog;
+
 @RequiredArgsConstructor
 @Service
 @Slf4j
@@ -80,7 +82,7 @@ public class FilmService {
         saveInLog(HttpMethod.DELETE, "/films/" + filmId + "/like/" + userId, ((Boolean) delete).toString());
     }
 
-    public List<Long> getListOfLikes(long id) {
+    public List<Long> getLikesList(long id) {
         filmStorage.getFilmById(id);
         List<Long> listLike = likesStorage.getLikesList(id);
         saveInLog(HttpMethod.GET, "/films/" + id + "/likes", listLike.toString());
@@ -104,10 +106,6 @@ public class FilmService {
             throw new ValidationException("Дата релиза не может быть раньше  28 декабря 1895 года!");
         }
         return film;
-    }
-
-    private void saveInLog(HttpMethod method, String uri, String storage) {
-        log.info("Получен запрос: '{} {}'. В хранилище: '{}'", method, uri, storage);
     }
 }
 

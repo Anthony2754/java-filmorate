@@ -46,7 +46,7 @@ public class FilmDbStorage implements FilmStorage {
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("films")
                 .usingGeneratedKeyColumns("film_id");
-        long filmId = simpleJdbcInsert.executeAndReturnKey(inMap(film)).longValue();
+        long filmId = simpleJdbcInsert.executeAndReturnKey(saveInMap(film)).longValue();
 
         if (film.getGenres() != null && !film.getGenres().isEmpty()) {
             filmGenreStorage.addGenre(film.getGenres(), filmId);
@@ -100,7 +100,7 @@ public class FilmDbStorage implements FilmStorage {
                 .build();
     }
 
-    private Map<String, Object> inMap(Film film) {
+    private Map<String, Object> saveInMap(Film film) {
         Map<String, Object> values = new HashMap<>();
         values.put("name", film.getName());
         values.put("description", film.getDescription());
