@@ -35,11 +35,9 @@ public class GenreService {
     }
 
     public List<Genre> getListOfGenres(long id) {
-        List<Genre> listGenre = filmGenreStorage.getGenresList(id).stream()
+        return filmGenreStorage.getGenresList(id).stream()
                 .map(genreStorage::getGenreById)
                 .collect(Collectors.toList());
-
-        return listGenre;
     }
 }
 

@@ -48,8 +48,7 @@ public class LikesDbStorage implements LikesStorage {
                 "GROUP BY films.film_id " +
                 "ORDER BY COUNT(DISTINCT likes.user_id) desc " +
                 "limit + ?";
-        List<Long> likes = jdbcTemplate.queryForList(request, Long.class, count);
-        return likes;
+        return jdbcTemplate.queryForList(request, Long.class, count);
     }
 
     private Map<String, Object> saveInMap(Likes likes) {
