@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
 
 @Slf4j
-public class Logs {
+public class LogsUtil {
 
     public static void logRequests(HttpMethod method, String uri, String body) {
 

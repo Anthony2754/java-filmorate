@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.yandex.practicum.filmorate.log.Logs;
+import ru.yandex.practicum.filmorate.log.LogsUtil;
 import ru.yandex.practicum.filmorate.model.Genre;
 import ru.yandex.practicum.filmorate.service.GenreService;
 
@@ -21,13 +21,13 @@ public class GenreController {
 
     @GetMapping
     public Collection<Genre> getAllGenres() {
-        Logs.logRequests(HttpMethod.GET, "/genres", "no body");
+        LogsUtil.logRequests(HttpMethod.GET, "/genres", "no body");
         return genreService.getGenres();
     }
 
     @GetMapping("/{id}")
     public Genre getGenreById(@PathVariable int id) {
-        Logs.logRequests(HttpMethod.GET, "/genres/" + id, "no body");
+        LogsUtil.logRequests(HttpMethod.GET, "/genres/" + id, "no body");
         return genreService.getGenreById(id);
     }
 }

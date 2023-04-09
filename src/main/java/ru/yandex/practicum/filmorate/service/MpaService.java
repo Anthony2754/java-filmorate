@@ -9,7 +9,7 @@ import ru.yandex.practicum.filmorate.storage.dal.MpaStorage;
 
 import java.util.Collection;
 
-import static ru.yandex.practicum.filmorate.log.Logs.saveInLog;
+import static ru.yandex.practicum.filmorate.log.LogsUtil.saveInLog;
 
 @Service
 @RequiredArgsConstructor

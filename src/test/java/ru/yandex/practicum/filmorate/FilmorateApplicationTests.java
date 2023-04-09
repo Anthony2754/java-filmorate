@@ -14,10 +14,12 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.jdbc.core.JdbcTemplate;
 import ru.yandex.practicum.filmorate.model.Genre;
 import ru.yandex.practicum.filmorate.model.Mpa;
-import ru.yandex.practicum.filmorate.storage.dal.*;
+import ru.yandex.practicum.filmorate.storage.dao.*;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
@@ -29,14 +31,13 @@ import static org.hamcrest.Matchers.equalTo;
 class FilmorateApplicationTests {
 
     private final JdbcTemplate jdbcTemplate;
-    private final UserStorage userStorage;
-    private final FilmGenreStorage filmGenreStorage;
-    private final FilmStorage filmStorage;
-    private final FriendsStorage friendsStorage;
-    private final GenreStorage genreStorage;
-    private final LikesStorage likesStorage;
-    private final MpaStorage mpaStorage;
-
+    private final UserDbStorage userStorage;
+    private final FilmGenreDbStorage filmGenreStorage;
+    private final FilmDbStorage filmStorage;
+    private final FriendsDbStorage friendsStorage;
+    private final GenreDbStorage genreStorage;
+    private final LikesDbStorage likesStorage;
+    private final MpaDbStorage mpaStorage;
 
     @AfterEach
     void afterEach() {
@@ -118,7 +119,7 @@ class FilmorateApplicationTests {
     }
 
     @Test
-    void getUserById() {
+    void getUserByIdTest() {
         User user = User.builder()
                 .email("email@yandex.ru")
                 .login("login")
@@ -131,7 +132,7 @@ class FilmorateApplicationTests {
     }
 
     @Test
-    void getUsersTest() {
+    void getAllUsersTest() {
         User user1 = User.builder()
             .email("email@yandex.ru")
             .login("login")
@@ -358,7 +359,7 @@ class FilmorateApplicationTests {
     }
 
     @Test
-    void getFilmsTest() {
+    void getAllFilmsTest() {
         Film film1 = Film.builder()
                 .name("Film1").description("Description1")
                 .releaseDate(LocalDate.of(2020, 11, 12))
@@ -388,7 +389,7 @@ class FilmorateApplicationTests {
     }
 
     @Test
-    void getFilmById() {
+    void getFilmByIdTest() {
         Film film1 = Film.builder()
             .name("Film")
             .description("Description")
@@ -469,7 +470,7 @@ class FilmorateApplicationTests {
     }
 
     @Test
-    void getListLikes() {
+    void getLikesListTest() {
         User user1 = User.builder()
             .email("email@yandex.ru")
             .login("login")
@@ -548,7 +549,7 @@ class FilmorateApplicationTests {
     }
 
     @Test
-    void getGenresTest() {
+    void getAllGenresTest() {
         Genre genre = Genre.builder()
             .id(6)
             .name("Боевик")
@@ -593,7 +594,7 @@ class FilmorateApplicationTests {
         Film addFilm1 = filmStorage.postFilm(film1);
         filmGenreStorage.addGenre(List.of(genre1), addFilm1.getId());
         assertThat(filmStorage.getFilmById(addFilm1.getId()).getGenres(), hasItem(genre1));
-        }
+    }
 
     @Test
     void getGenresListTest() {
@@ -642,7 +643,7 @@ class FilmorateApplicationTests {
     }
 
     @Test
-    void getMpaTest() {
+    void getAllMpaTest() {
         Mpa mpa = Mpa.builder()
                 .id(1)
                 .name("G")
@@ -653,7 +654,7 @@ class FilmorateApplicationTests {
     }
 
     @Test
-    void getMpaById() {
+    void getMpaByIdTest() {
         Mpa mpaId1 = Mpa.builder()
             .id(1)
             .name("G")

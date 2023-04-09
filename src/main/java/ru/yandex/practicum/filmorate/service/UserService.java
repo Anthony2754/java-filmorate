@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ru.yandex.practicum.filmorate.log.Logs.saveInLog;
+import static ru.yandex.practicum.filmorate.log.LogsUtil.saveInLog;
 
 @RequiredArgsConstructor
 @Service
